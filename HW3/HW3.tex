@@ -1,0 +1,116 @@
+% copyright arturo salinas-aguayo 2024
+\documentclass[12pt]{article}
+
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{array}
+\usepackage{amsfonts}
+\usepackage{fancyhdr}
+\usepackage{geometry}
+\usepackage{subfigure}
+\usepackage{caption}
+\usepackage{tikz}
+\usepackage{bm}
+\usepackage{float}
+
+\geometry{letterpaper, margin=1in}
+\graphicspath{ {../images/} }
+
+% Header and Footer
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{CSE 2500-01: Homework 3}
+\fancyhead[R]{Page \thepage}
+\setlength{\headheight}{15pt}
+
+\author{Arturo Salinas-Aguayo}
+\title{CSE 2500-01: Homework 3}
+% theorem set
+\newtheorem{example}{Example}
+% Example block environment
+\newenvironment{examp}
+{\vspace{0.5cm}
+ \hrule
+\vspace{0.5cm}
+\begin{example}}
+{\hrule
+\vspace{0.5cm}
+\end{example}}
+
+\begin{document}
+\newcommand{\closure}[2][3]{%
+	{}\mkern#1mu\overline{\mkern-#1mu#2}}
+\newcommand\ncoverline[1]{\mkern1mu\overline{\mkern-1mu#1\mkern-1mu}\mkern1mu}
+% Title Page
+\begin{titlepage}
+	\centering
+	\vspace*{3cm}
+	\huge\textbf{CSE 2500-01: Homework 3}\\
+	\vspace{5cm}
+	\Large\textbf{Arturo Salinas-Aguayo}\\
+	\normalsize
+	Spring 2025\\
+	Electrical and Computer Engineering Department\\
+	\vfill
+	\includegraphics[scale=0.1]{uconnlogo}\\
+	College of Engineering, University of Connecticut\\
+	\scriptsize{Coded in \LaTeX}
+	\vspace*{1cm}
+\end{titlepage}
+
+\section*{Problems}
+\subsection*{Question 1.}
+Use the logical equivalences \( p \rightarrow q \equiv \sim p \lor q \) and \( p \leftrightarrow q \equiv (p \rightarrow q) \land (q \rightarrow p) \) to rewrite the following statement forms without using the symbol \(\leftrightarrow\) or \(\rightarrow\). (30 points)
+\begin{enumerate}
+	\item[(a)] \((p\; \land \sim q) \rightarrow r\)
+	      
+	      \vspace{10cm}
+	\item[(b)] \((p\, \rightarrow r) \leftrightarrow (q \rightarrow r)\)
+	      
+	      \vspace{10cm}
+	\item[(c)] \((p \rightarrow (q \rightarrow r)) \leftrightarrow ((p \land q) \rightarrow r)\)
+	      
+	      \vspace{10cm}
+\end{enumerate}
+
+\newpage
+\subsection*{Question 2. }
+Use truth tables to show that the following argument forms are valid or invalid. Indicate which columns represent the premises and which represent the conclusion, and critical row(s). Include an explanation why the form of argument are valid or invalid. (50 points)
+\begin{enumerate}
+	\item[(a)] \( p \rightarrow q \)\\
+	      \( p \)\\
+	      \(\therefore q\)
+	      \vspace{6cm}
+	\item[(b)] \( p \rightarrow q \)\\
+	      \( \sim q \)\\
+	      \(\therefore \sim p\)
+	      \vspace{6cm}
+	\item[(c)] \( p \rightarrow q \)\\
+	      \( q \)\\
+	      \(\therefore p\)
+	      \vspace{6cm}
+	\item[(d)] \( p \rightarrow q \)\\
+	      \( \sim p \)\\
+	      \(\therefore \sim q\)
+	      \vspace{6cm}
+	\item[(e)] \( p \rightarrow q \)\\
+	      \( q \rightarrow r \)\\
+	      \(\therefore p \rightarrow r\)
+	      \vspace{8cm}
+\end{enumerate}
+\newpage
+
+\subsection*{Question 3.}
+A set of premises and a conclusion are given as follows. Use the valid argument forms listed in Table 2.3.1 to deduce the conclusion from the premises, giving a reason for each step. Assume all variables are statement variables. (20 points)
+\begin{itemize}
+	\item \((\sim p \lor q) \rightarrow r\)\\
+	      \(s\; \lor \sim q\)\\
+	      \(\sim x\)\\
+	      \(p \rightarrow x\)\\
+	      \((\sim p \land r) \rightarrow\; \sim s\)\\
+	      \(\therefore \sim q\)
+\end{itemize}
+
+\end{document}
+% vim: set ft=tex tw=80 ts=2 sts=2 sw=2 noet:

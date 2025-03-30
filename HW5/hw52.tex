@@ -1,0 +1,147 @@
+% Copyright Arturo Salinas-Aguayo 2025
+\documentclass[12pt]{article}
+
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{array}
+\usepackage{mdframed}
+\usepackage{amsfonts}
+\usepackage{fancyhdr}
+\usepackage{geometry}
+\usepackage{subfigure}
+\usepackage{caption}
+\usepackage{tikz}
+\usepackage{bm}
+\usepackage{float}
+
+\geometry{letterpaper, margin=1in}
+\graphicspath{ {../images/} }
+
+% Header and Footer
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{CSE 2500-01: Homework 5}
+\fancyhead[R]{Page \thepage}
+\setlength{\headheight}{15pt}
+
+\author{Arturo Salinas-Aguayo}
+\title{CSE 2500-01: Homework 5}
+
+% Custom Theorem Environment
+\newcounter{theo}[section]
+\newenvironment{theo}[1][]{%
+  \stepcounter{theo}%
+  \mdfsetup{
+    innertopmargin=10pt,
+    linecolor=blue!20,
+    linewidth=2pt,
+    topline=true,
+    frametitle={%
+      \tikz[baseline=(current bounding box.east).outer sep=0pt]
+      \node[anchor=east,rectangle,fill=blue!20]
+      {\strut Theorem ~\thetheo#1};
+    },
+    frametitleaboveskip=0pt,
+  }
+  \begin{mdframed}[]
+}{\end{mdframed}}
+
+% Theorem and Example Definitions
+\newtheorem{theorem}{Theorem}
+\renewcommand\qedsymbol{\textbf{QED}}
+\newtheorem{example}{Example}
+
+\newenvironment{examp}{
+  \vspace{0.5cm}
+  \hrule
+  \vspace{0.5cm}
+  \begin{example}
+}{
+  \hrule
+  \vspace{0.5cm}
+  \end{example}
+}
+
+\begin{document}
+
+% New Commands
+\newcommand{\closure}[2][3]{\mkern#1mu\overline{\mkern-#1mu#2}}
+\newcommand{\ncoverline}[1]{\mkern1mu\overline{\mkern-1mu#1\mkern-1mu}\mkern1mu}
+
+% Title Page
+\begin{titlepage}
+	\centering
+	\vspace*{3cm}
+	\huge\textbf{CSE 2500-01: Homework 5}\\
+	\vspace{5cm}
+	\Large\textbf{Arturo Salinas-Aguayo}\\
+	\normalsize
+	Spring 2025\\
+	Electrical and Computer Engineering Department\\
+	\vfill
+	\includegraphics[scale=0.1]{uconnlogo}\\
+	College of Engineering, University of Connecticut\\
+	\scriptsize{Coded in \LaTeX}
+	\vspace*{1cm}
+\end{titlepage}
+
+\section*{Problems}
+\subsection*{Question 1}
+Prove the following properties. You should follow the procedures discussed and shown in the class.
+
+\begin{theorem}
+	The sum, product, and difference of any two even integers are even.
+\end{theorem}
+\begin{proof}
+	\underline{Suppose:} $m$ and $n$ are any even integers.\newline
+	\underline{By Definition} of even, $m = 2r$ and $n = 2s$ for some integers $r$ and $s$.\newline
+	\underline{Then}
+	\begin{align*}
+		m + n & = 2r + 2s  & \text{(by substitution)} \\
+		      & = 2(r + s) & \text{(by algebra)}
+	\end{align*}
+	\underline{Hence,} the sum is even. Similarly, multiplication and subtraction follow the same pattern.
+\end{proof}
+
+\begin{theorem}
+	The sum and difference of any two odd integers are even.
+\end{theorem}
+\begin{proof}
+	\underline{Suppose:} $m$ and $n$ are any odd integers.\newline
+	\underline{By Definition} of odd, $m = 2r + 1$ and $n = 2s + 1$ for some integers $r$ and $s$.\newline
+	\underline{Then}
+	\begin{align*}
+		m + n & = (2r + 1) + (2s + 1) & \text{(by substitution)} \\
+		      & = 2(r + s + 1)        & \text{(by algebra)}
+	\end{align*}
+	\underline{Thus,} the sum is even. Similar steps follow for subtraction.
+\end{proof}
+
+\begin{theorem}
+	The product of any two odd integers is odd.
+\end{theorem}
+\begin{proof}
+	\underline{Suppose:} $m = 2r + 1$ and $n = 2s + 1$.\newline
+	\begin{align*}
+		m \cdot n & = (2r + 1)(2s + 1)   \\
+		          & = 4rs + 2r + 2s + 1  \\
+		          & = 2(2rs + r + s) + 1
+	\end{align*}
+	Since $2rs + r + s$ is an integer, $m \cdot n$ is odd.
+\end{proof}
+
+\begin{theorem}
+	The product of any even integer and any odd integer is even.
+\end{theorem}
+\begin{proof}
+	\underline{Suppose:} $m$ is even and $n$ is odd.\newline
+	\begin{align*}
+		m \cdot n & = (2r)(2s + 1) \\
+		          & = 2(2rs + r)
+	\end{align*}
+	\underline{Since} $2rs + r$ is an integer, the product is even.
+\end{proof}
+
+\end{document}
