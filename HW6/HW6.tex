@@ -206,58 +206,89 @@ Is $x$ necessarily rational? If so, prove it.
 \end{itemize}
 
 \subsection*{Problem 6}
-\textbf{(10 points)} Prove the following statement:
-
 \begin{theo}
 	\textit{The square of any integer has the form $4k$ or $4k + 1$ for some integer $k$.}
 	\begin{proof}
-		Suppose $k$ is any integer.\\
-		For any integer $k$, $k^2$ is its square.\\
-		\noindent \textbf{Case I}
+		Suppose $n$ is any integer.\\
+		\noindent By the Quotient-Remainder Theorem with a divisor equal to 2,\\
+		$n = 2q$ or $n = 2q + 1$ for some integer $q$.\\
+
+		\noindent \textbf{Case I} ($n = 2q$)
 		\begin{align*}
-			4k =
+			n^2 & = (2q)^2 & \text{(By Substitution)} \\
+			    & = 4q^2   & \text{(By Algebra.)}
 		\end{align*}
+		\noindent Let $k = q^2$. Note that $k$ is an integer because it is a product of integers.\\
+		\noindent It follows $n^2 = 4k$ for some integer $k$.\\
+
+		\noindent \textbf{Case II} ($n = 2q + 1$)
+
+		\begin{align*}
+			n^2 & = (2q + 1)^2      & \text{(By Substitution)} \\
+			    & = (4q^2 + 4q + 1)                            \\
+			    & = 4(q^2 + q) + 1  & \text{(By Algebra.)}
+		\end{align*}
+		\noindent Let $k = q^2 + q$. Note that $k$ is an integer because it is a product of integers.\\
+		\noindent It follows $n^2 = 4k + 1$ for some integer $k$.\\
+
+		\noindent Hence, for both cases, there exists an integer $k$ such that $n^2 = 4k$ or $n^2 = 4k + 1$.
 	\end{proof}
 \end{theo}
 
+\newpage
 \subsection*{Problem 7}
-\textbf{(10 points)} Show that the following statement is false:
-
 ``For all integers $a$ and $b$, if $3 \mid (a + b)$, then $3 \mid (a - b)$.''
-\begin{theo}
-	\textit{For all integers $a$ and $b$, if $3 \mid (a + b)$, then $3 \mid (a - b)$.}\\
 
+This is \textbf{False}. To prove this, I prove the inverse to be true.\\
+\begin{theo}
+	\textit{There exists integers a and b such that $3 \mid (a + b)$ and $3 \nmid (a - b)$.}\\
 	\begin{proof}
-		\noindent This is \textbf{False.}\\
 		\noindent Let $a = 2$ and $b = 1$.\\
 		Then,\\
 		\begin{align*}
-			a + b & = 2 + 1 = 3 & \text{(By Substitution)}
+			a + b & = 2 + 1 = 3 & \text{(By Substitution)} \\
 		\end{align*}
 		Thus, $3 | (a + b)$ because $3 = 3 \cdot 1$.\\
 		\noindent Also,
 		\begin{align*}
-			a - b & = 2 - 1 = 1 & \text{(By Substitution)}
+			a - b & = 2 - 1 = 1 & \text{(By Substitution)} \\
 		\end{align*}
 		But, $3 \nmid 1$ because $\frac{1}{3}$ is not an integer.\\
 		Thus it is shown that $3 \nmid (a - b)$.
 	\end{proof}
-
 \end{theo}
 
 \subsection*{Problem 8}
-\textbf{(10 points)} Prove that if $n$ is any nonnegative integer whose decimal representation ends in 5, then $5 \mid n$.
 \begin{theo}
 	\textit{If $n$ is any nonnegative integer whose decimal representation ends in 5, then $5 \mid n$.}
+	\begin{proof}
+		Suppose $n$ is a nonnegative integer whose decimal representation ends in 5.\\
+		Let $n = 10m + 5$ for some integer, $m$.\\
+		\begin{align*}
+			n & = 10m + 5                            \\
+			  & = 5(2m + 1) & \text{(By Factoring.)} \\
+		\end{align*}
+		Note that the quantity $(2m + 1)$ is an integer since it is the product and sum of integers.\\
+		Thus, by definition of divisibility, $n$ is divisible by 5.
+	\end{proof}
 \end{theo}
 
 \subsection*{Problem 9}
-\textbf{(10 points)} Given any integer $n > 3$, could $n$, $n + 2$, and $n + 4$ all be prime? Prove or give a counterexample.
+\textbf{(10 points)} Given any integer $n > 3$, could $n$, $n + 2$, and $n + 4$ all be prime? Prove or give a counterexample.\\
+They cannot all be prime. To prove this, I will prove the inverse.
 \begin{theo}
-	\textit{Given any integer $n > 3$, could $n$, $n + 2$, and $n + 4$ all be prime?}
+	\textit{There exists an integer $n > 3$ such that $n$, $n + 2$, or $n + 4$ is not prime.}
 	\begin{proof}
 		Suppose $n$ is any integer with $n > 3$.\\
-		By the quotient remainder theorem, $n = 3q$, or $n = 3q + 1$ or $n = 3q +2$ for some integer $q$.
+		\noindent Let $d = 3$.
+		\noindent By the quotient remainder theorem, \\
+		$n = 3q$, or $n = 3q + 1$ or $n = 3q + 2$ for some integer $q$.\\
+		Note that since $n > 3$, either \\
+		\begin{align}[0]
+			q & > 1                                        & \text{or} \\
+			q & = 1 \text{\quad\ and \quad} n = 4 = 3q + 1 & \text{or} \\
+			q & = 1 \text{\quad and\quad} n = 5 = 3q + 1               \\
+		\end{align}
 
 	\end{proof}
 \end{theo}
