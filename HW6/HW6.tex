@@ -116,13 +116,14 @@
 \end{theo}
 \begin{theo}
 	\textit{If $m$ and $n$ are positive integers and $mn$ is a perfect square, then $m$ and $n$ are both perfect squares.}\\
-
-	This is \textbf{False}.\\
-	Let $m = n = 2 \rightarrow m \cdot n = 4$\\
-	By definition of perfect squares, $4$ is a perfect square since $4 = 2^2$
-	but neither $m = 2$ nor $n = 2$ is a perfect square.
+	This is \textbf{False}
+	\begin{proof}[Disproof by Counterexample]
+		Let $m = n = 2 \rightarrow m \cdot n = 4$\\
+		By definition of perfect squares, $4$ is a perfect square since $4 = 2^2$
+		but neither $m = 2$ nor $n = 2$ is a perfect square.
+	\end{proof}
 \end{theo}
-\newpage
+\vspace{5cm}
 \begin{theo}
 	\textit{Given two rational numbers $r$ and $s$ where $r < s$, there exists another rational number between $r$ and $s$.}
 	\begin{proof}
@@ -143,12 +144,12 @@
 
 		\noindent Suppose $e$ and $f$ are any real numbers such that $e < f$.\\
 		\noindent Dividing into cases and by the properties of inequalities,\\
-		\textbf{Case I}\\
+		\textbf{Case I} (adding a $f$ to both sides.)\\
 		\begin{align*}
 			(e + f)         & < 2f \rightarrow \text{Dividing by Two}, \\
 			\frac{e + f}{2} & < 2
 		\end{align*}
-		\textbf{Case II}
+		\textbf{Case II} (adding an $e$ to both sides.)\\
 		\begin{align*}
 			2e & < (e + f) \rightarrow \text{Dividing by Two}, \\
 			e  & < \frac{e + f}{2}
@@ -163,8 +164,6 @@
 
 \end{theo}
 
-\subsection*{Problem 4}
-Is $x$ necessarily rational? If so, prove it.
 \begin{theo}
 	\textit{Let \( a, b, c, d \in \mathbb{Z} \) with \( a \ne c \), and let \( x \in \mathbb{R} \) satisfy the equation
 		\[
@@ -188,8 +187,13 @@ Is $x$ necessarily rational? If so, prove it.
 	\end{proof}
 
 \end{theo}
-\subsection*{Problem 5}
-\textbf{(5 points)} Use the unique factorization theorem to write the following integers in standard factored form:
+\begin{theo}[Unique Factorization of Integers Theorem.]
+	Given any integer $n > 1$, there exist a positive integer $k$, distinct prime numbers $p_1$, $p_2$, $\cdots$, $p_k$ and positive integers $e_1$, $e_2$, $\cdots$, $e_k$ such that
+	\[
+		n = p^{e_1}_1p^{e_2}_2p^{e_3}_3\cdots p^{e_k}_k
+	\]
+	and any other expression for $n$ as a product of prime numbers is identical to this except, perhaps, for the order in which the factors are written.
+\end{theo}
 \begin{itemize}
 	\item[(a)] 1176
 	      \begin{align*}
@@ -205,7 +209,6 @@ Is $x$ necessarily rational? If so, prove it.
 	      \end{align*}
 \end{itemize}
 
-\subsection*{Problem 6}
 \begin{theo}
 	\textit{The square of any integer has the form $4k$ or $4k + 1$ for some integer $k$.}
 	\begin{proof}
@@ -239,10 +242,10 @@ Is $x$ necessarily rational? If so, prove it.
 \subsection*{Problem 7}
 ``For all integers $a$ and $b$, if $3 \mid (a + b)$, then $3 \mid (a - b)$.''
 
-This is \textbf{False}. To prove this, I prove the inverse to be true.\\
+This is \textbf{False}.\\
 \begin{theo}
 	\textit{There exists integers a and b such that $3 \mid (a + b)$ and $3 \nmid (a - b)$.}\\
-	\begin{proof}
+	\begin{proof}[Disproof by Counterexample]
 		\noindent Let $a = 2$ and $b = 1$.\\
 		Then,\\
 		\begin{align*}
@@ -258,7 +261,6 @@ This is \textbf{False}. To prove this, I prove the inverse to be true.\\
 	\end{proof}
 \end{theo}
 
-\subsection*{Problem 8}
 \begin{theo}
 	\textit{If $n$ is any nonnegative integer whose decimal representation ends in 5, then $5 \mid n$.}
 	\begin{proof}
@@ -272,44 +274,43 @@ This is \textbf{False}. To prove this, I prove the inverse to be true.\\
 		Thus, by definition of divisibility, $n$ is divisible by 5.
 	\end{proof}
 \end{theo}
-
+\newpage
 \subsection*{Problem 9}
-\textbf{(10 points)} Given any integer $n > 3$, could $n$, $n + 2$, and $n + 4$ all be prime? Prove or give a counterexample.\\
-They cannot all be prime. To prove this, I will prove the inverse.
+Given any integer $n > 3$, could $n$, $n + 2$, and $n + 4$ all be prime? Prove or give a counterexample.\\
+They cannot all be prime
 \begin{theo}
 	\textit{There exists an integer $n > 3$ such that $n$, $n + 2$, or $n + 4$ is not prime.}
-	\begin{proof}
+	\begin{proof}[Disproof by Counterexample]
 		Suppose $n$ is any integer with $n > 3$.\\
-		\noindent Let $d = 3$.
-		\noindent By the quotient remainder theorem, \\
-		$n = 3q$, or $n = 3q + 1$ or $n = 3q + 2$ for some integer $q$.\\
-		Note that since $n > 3$, either \\
-		\begin{align}[0]
-			q & > 1                                        & \text{or} \\
-			q & = 1 \text{\quad\ and \quad} n = 4 = 3q + 1 & \text{or} \\
-			q & = 1 \text{\quad and\quad} n = 5 = 3q + 1               \\
+		Let $d = 3$.\\
+		By the quotient-remainder theorem,\\
+		$n = 3q$, or $n = 3q + 1$, or $n = 3q + 2$ for some integer $q$.\\
+		Note that since $n > 3$, either
+		\setcounter{equation}{0}
+		\begin{align}
+			q & > 1                                        \quad \text{or} \\
+			q & = 1 \text{\quad and \quad} n = 4 = 3q + 1  \quad \text{or} \\
+			q & = 1 \text{\quad and \quad} n = 5 = 3q + 2
 		\end{align}
-
-	\end{proof}
-\end{theo}
-\subsection*{Question 1}
-Prove the following properties. You should follow the procedures discussed and shown in the class.
-
-\begin{theo}
-	\textit{The difference of any even integer minus any odd integer is odd.}
-	\begin{proof}
-		\underline{Suppose:} $m$ is any even integer and $n$ is any odd integer.\\
-		\underline{By definition} of even and odd, $m = 2r$ and $n = 2s + 1$, for some integers $r$ and $s$.\\
-		\underline{Then}
+		\noindent \textbf{Case I} ($q > 1$ and $n = 3q$)\\
+		$n$ is not prime because it is a product of $3$ and $q$, and both $3$ and $q$ are greater than 1.\\
+		\noindent \textbf{Case II} ($q \geq 1$ and $n = 3q + 1$)\\
 		\begin{align*}
-			m - n & = (2r) - (2s + 1)  & \text{(by substitution)} \\
-			      & = 2r - 2s - 1                                 \\
-			      & = 2(r - s - 1) + 1 & \text{(by algebra)}
+			n + 2 & = (3q + 1) + 2 & \text{(By substitution)} \\
+			      & = 3q + 3                                  \\
+			      & = 3(q + 1)     & \text{(By algebra)}
 		\end{align*}
-		\underline{Let} $t = r - s - 1$\\
-		\underline{Note} $t$ is an integer since the difference of integers are integers.\\
-		\underline{Hence} $m - n = 2t + 1$, where $t$ is some integer.\\
-		\underline{It follows by definition} of odd that $m - n$ is odd.
+		So $n + 2$ is not prime because it is a product of $3$ and $q + 1$, and both $3$ and $q + 1$ are greater than 1.\\
+
+		\noindent \textbf{Case III} ($q \geq 1$ and $n = 3q + 2$)\\
+		\begin{align*}
+			n + 4 & = (3q + 2) + 4 & \text{(By substitution)} \\
+			      & = 3q + 6                                  \\
+			      & = 3(q + 2)     & \text{(By algebra)}
+		\end{align*}
+		So $n + 4$ is not prime because it is a product of $3$ and $q + 2$, and both $3$ and $q + 2$ are greater than 1.\\
+
+		\noindent \textbf{Conclusion:} In all three cases, at least one of $n$, $n + 2$, or $n + 4$ is not prime.
 	\end{proof}
 \end{theo}
 
