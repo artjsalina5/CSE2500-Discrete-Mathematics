@@ -1,0 +1,314 @@
+% copyright arturo salinas-aguayo 2025
+\documentclass[12pt]{article}
+
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{array}
+\usepackage{mdframed}
+\usepackage{amsfonts}
+\usepackage{fancyhdr}
+\usepackage{geometry}
+\usepackage{subfigure}
+\usepackage{caption}
+\usepackage{tikz}
+\usepackage{bm}
+\usepackage{float}
+
+\geometry{letterpaper, margin=1in}
+\graphicspath{ {../images/} }
+
+% Header and Footer
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{CSE 2500-01: Homework 7}
+\fancyhead[R]{Page \thepage}
+\setlength{\headheight}{15pt}
+
+\author{Arturo Salinas-Aguayo}
+\title{CSE 2500-01: Homework 7}
+
+\usepackage{etoolbox} % Required for \ifstrempty
+
+\newcounter{theo}[section]
+\newenvironment{theo}[1][]{%
+  \stepcounter{theo}%
+  \ifstrempty{#1}%
+    {\mdfsetup{%
+      frametitle={%
+        \tikz[baseline=(current bounding box.east), outer sep=0pt]
+          \node[anchor=east,rectangle,fill=blue!20]
+          {\strut Theorem~\thetheo};}}%
+    }%
+    {\mdfsetup{%
+      frametitle={%
+        \tikz[baseline=(current bounding box.east), outer sep=0pt]
+          \node[anchor=east,rectangle,fill=blue!20]
+          {\strut Theorem~\thetheo:~#1};}}%
+    }%
+  \mdfsetup{
+    innertopmargin=10pt,
+    linecolor=blue!20,
+    linewidth=2pt,
+    topline=true,
+    frametitleaboveskip=-\ht\strutbox,
+  }
+  \begin{mdframed}[]\relax%
+}{\end{mdframed}}
+
+\renewcommand\qedsymbol{\textbf{QED}}
+\newtheorem{example}{Example}
+% Example block environment
+\newenvironment{examp}
+{\vspace{0.5cm}
+ \hrule
+\vspace{0.5cm}
+\begin{example}}
+{\hrule
+\vspace{0.5cm}
+\end{example}}
+% Macro for centered equals in final row
+\newcommand{\centereq}[2]{#1 \kern-3em = \hphantom{#1} #2}
+
+% Macro for vertical LHS/RHS derivation layout
+\newenvironment{lhsrhsproof}[0]{
+  \[
+  \renewcommand{\arraystretch}{1.5}
+  \begin{array}{c@{\quad\quad}c}
+  \textbf{LHS} & \textbf{RHS} \\
+}{
+  \end{array}
+  \]
+}
+\begin{document}
+\newcommand{\closure}[2][3]{%
+	{}\mkern#1mu\overline{\mkern-#1mu#2}}
+\newcommand\ncoverline[1]{\mkern1mu\overline{\mkern-1mu#1\mkern-1mu}\mkern1mu}
+% Title Page
+\begin{titlepage}
+	\centering
+	\vspace*{3cm}
+	\huge\textbf{CSE 2500-01: Homework 7}\\
+	\vspace{5cm}
+	\Large\textbf{Arturo Salinas-Aguayo}\\
+	\normalsize
+	Spring 2025\\
+	Electrical and Computer Engineering Department\\
+	\vfill
+	\includegraphics[scale=0.1]{uconnlogo}\\
+	College of Engineering, University of Connecticut\\
+	\scriptsize{Coded in \LaTeX}
+	\vspace*{1cm}
+\end{titlepage}
+
+\section*{Problems}
+
+\[
+	\begin{array}{c@{\quad\quad}c}
+		\textbf{LHS}        & \textbf{RHS}              \\
+
+		\sum_{i=0}^{0} r^i  & \frac{r^{0+1} - 1}{r - 1} \\
+		\rotatebox{90}{$=$} & \rotatebox{90}{$=$}       \\
+
+		r^0                 & \frac{r - 1}{r - 1}       \\
+		\rotatebox{90}{$=$} & \rotatebox{90}{$=$}       \\
+
+		1                   & 1                         \\
+		\rotatebox{90}{$=$} & \rotatebox{90}{$=$}       \\
+
+		1                   & 1                         \\
+		\multicolumn{2}{c}{\textbf{Therefore, LHS = RHS}}
+	\end{array}
+\]
+\begin{theo}[Induction Proof 1]
+	Prove the following statement using mathematical induction:
+	\[
+		\forall n \in \mathbb{Z}, n \geq 1, \quad \frac{1}{1 \cdot 2} + \frac{1}{2 \cdot 3} + \cdots + \frac{1}{n(n+1)} = \frac{n}{n+1}
+	\]
+	\begin{proof}[Proof by Mathematical Induction.]
+		\leavevmode\par
+		Let the property, \( P(n) \) be the equation:
+		\[
+			\quad \frac{1}{1 \cdot 2} + \frac{1}{2 \cdot 3} + \cdots + \frac{1}{n(n+1)} = \frac{n}{n+1}
+		\]
+		\textbf{Base Case:} Show that \( P(1) \) is true.\\
+		\[
+			\begin{array}{c@{\quad\quad}c}
+				\textbf{LHS}        & \textbf{RHS}                      \\
+				\frac{1}{1(1 + 1)}  & \frac{1}{1 + 1}                   \\
+				\rotatebox{90}{$=$} & \rotatebox{90}{$=$}               \\
+				\multicolumn{2}{c}{\frac{1}{2} \quad=\quad \frac{1}{2}} \\
+			\end{array}
+		\]
+		Therefore, $P(1)$ is true.\\
+		\textbf{Inductive Step:} Assume that \( P(k) \) is true for some integer \( k \geq 1 \). That is, assume:
+		\[
+			\quad \frac{1}{1 \cdot 2} + \frac{1}{2 \cdot 3} + \cdots + \frac{1}{k(k+1)} = \frac{k}{k+1}
+		\]
+		We need to show that \( P(k + 1) \) is true.
+		\[
+			\begin{array}{c@{\quad\quad}c}
+				\textbf{LHS}                                                                  & \textbf{RHS}                                           \\
+				\frac{1}{1 \cdot 2} + \frac{1}{2 \cdot 3} + \cdots + \frac{1}{(k+1)((k+1)+1)} & \frac{k+1}{(k+1)+1}                                    \\
+				\rotatebox{90}{$=$}                                                           & \rotatebox{90}{$=$}                                    \\
+				\frac{k}{k+1} + \frac{1}{(k+1)((k+1)+1)}                                      & \frac{k+1}{k+2}                                        \\
+				\rotatebox{90}{$=$}                                                           & \Downarrow                                             \\
+				\frac{k(k+1) + 1}{(k+1)(k+2)}                                                 &                                                        \\
+				\rotatebox{90}{$=$}                                                           & \Downarrow                                             \\
+				\frac{k^2+2k+1}{(k+1)(k+2)}                                                   &                                                        \\
+				\rotatebox{90}{$=$}                                                           & \Downarrow                                             \\
+				\frac{(k+1)^2}{(k+1)(k+2)}                                                    &                                                        \\
+				\rotatebox{90}{$=$}                                                           & \Downarrow                                             \\
+				\frac{k+1}{k+2}                                                               & \kern-3em = \hphantom{\frac{k+1}{k+2}} \frac{k+1}{k+2}
+			\end{array}
+		\]
+		Thus, we have shown that if \( P(k) \) is true, then \( P(k + 1) \) is also true.\\
+	\end{proof}
+\end{theo}
+
+\vspace{1cm}
+
+\begin{theo}[Induction Proof 2]
+	Prove the following statement using mathematical induction:
+	\[
+		\forall n \in \mathbb{Z}, n \geq 0, \quad \sum_{i=1}^{n+1} i \cdot 2^i = n \cdot 2^{n+2} + 2
+	\]
+
+	\begin{proof}[Proof by Mathematical Induction.]
+		\leavevmode\par
+		Let the property, \( P(n) \) be the equation:
+		\[
+			\sum_{i=1}^{n+1} i \cdot 2^i = n \cdot 2^{n+2} + 2
+		\]
+		\textbf{Base Case:} Show that \( P(0) \) is true.\\
+		\[
+			\begin{array}{c@{\quad\quad}c}
+				\textbf{LHS}                 & \textbf{RHS}                     \\
+				\sum_{i=1}^{0+1} i \cdot 2^i & 0 \cdot 2^{0+2} + 2              \\
+				\rotatebox{90}{$=$}          & \rotatebox{90}{$=$}              \\
+				1\cdot2^i                    & 2                                \\
+				\rotatebox{90}{$=$}          & \Downarrow                       \\
+				2                            & \kern-3em = \quad \hphantom{2} 2 \\
+			\end{array}
+		\]
+		\textbf{Inductive Step:} Assume that \( P(k) \) is true for some integer \( k \geq 0 \). That is, assume:
+		\[
+			\sum_{i=1}^{k+1} i \cdot 2^i = k \cdot 2^{k+2} + 2
+		\]
+		Then we need to show that \( P(k + 1) \) is true.
+		\[
+			\begin{array}{c@{\quad\quad}c}
+				\textbf{LHS}                                  & \textbf{RHS}                                             \\
+				\sum_{i=1}^{(k+1)+1} i \cdot 2^i              & (k+1) \cdot 2^{(k+1)+2} + 2                              \\
+				\rotatebox{90}{$=$}                           & \rotatebox{90}{$=$}                                      \\
+				\sum_{i=1}^{(k+2)} i \cdot 2^i                & (k+1) \cdot 2^{(k+3)} + 2                                \\
+				\rotatebox{90}{$=$}                           & \Downarrow                                               \\
+				\sum_{i=1}^{(k+1)} i \cdot 2^i + (k+2)2^{k+2} & (k+1) \cdot 2^{(k+3)} + 2                                \\
+				\rotatebox{90}{$=$}                           & \Downarrow                                               \\
+				k \cdot 2^{k+2} + 2 +(k+2)2^{k+2}             &                                                          \\
+				\rotatebox{90}{$=$}                           & \Downarrow                                               \\
+				2^{k+2}(k + (k+2)) + 2                        &                                                          \\
+				\rotatebox{90}{$=$}                           & \Downarrow                                               \\
+				2^{k+2}(2k+2) + 2                             &                                                          \\
+				\rotatebox{90}{$=$}                           & \Downarrow                                               \\
+				2^{k+3}(k+1) + 2                              &                                                          \\
+				\rotatebox{90}{$=$}                           & \Downarrow                                               \\
+				2^{k+3}(k+1) + 2                              & \kern-1.em =\hphantom{2^{k+3}(k+1) + 2} 2^{k+3}(k+1) + 2 \\
+			\end{array}
+		\]
+
+		Thus, we have shown that if \( P(k) \) is true, then \( P(k + 1) \) is also true.
+	\end{proof}
+\end{theo}
+
+\vspace{1cm}
+
+\begin{theo}[Induction Proof 3]
+	Prove the following inequality using mathematical induction:
+	\[
+		\forall n \in \mathbb{Z}, n \geq 2, \forall x \in \mathbb{R}, x \geq -1, \quad 1 + nx \leq (1 + x)^n
+	\]
+	\begin{proof}
+		Let the property, \( P(n) \) be the inequality:
+		\[
+			1 + nx \leq (1 + x)^n
+		\]
+		\textbf{Base Case:} Show that \( P(2) \) is true.\\
+		\[
+			\begin{array}{c@{\quad\quad}c}
+				\textbf{LHS}        & \textbf{RHS}        \\
+
+				1 + 2x              & (1 + x)^2           \\
+
+				\rotatebox{90}{$=$} & \rotatebox{90}{$=$} \\
+
+				1 + 2x              & 1 + 2x + x^2        \\
+			\end{array}
+		\]
+		\[
+			1 + 2x \leq 1 + 2x + x^2 \quad \text{is true for } x \geq -1
+		\]
+		\textbf{Inductive Step:} Assume that \( P(k) \) is true for some integer \( k \geq 2 \). That is, assume:
+		\[
+			1 + kx \leq (1 + x)^k
+		\]
+		We must show that $P(k + 1)$ is true.\\
+
+		\noindent
+		\begin{minipage}[t]{0.45\textwidth}
+			\fbox{%
+				\begin{minipage}{\textwidth}
+					\centering
+					\textbf{LHS}
+					\[
+						\begin{aligned}
+							 & 1 + (k + 1)x \\
+							 & 1 + kx + x   \\
+							 & 1 + x(k + 1)
+						\end{aligned}
+					\]
+				\end{minipage}
+			}
+		\end{minipage}
+		\hspace{.7em}
+		\begin{minipage}[t]{0.5\textwidth}
+			\fbox{%
+				\begin{minipage}{\textwidth}
+					\centering
+					\textbf{RHS}
+					\[
+						\begin{aligned}
+							 & (1 + x)^{k + 1}                             \\
+							 & (1 + x)(1 + x)^k                            \\
+							 & \Downarrow \text{(by inductive hypothesis)} \\
+							 & (1+x)(1+kx) \leq (1+x)(1+x)^k               \\
+							 & (kx^2 + kx + x + 1)  \leq (1+x)(1+x)^k      \\
+							 & kx^2+ x(k+1) + 1 \leq (1+x)(1+x)^k          \\
+						\end{aligned}
+					\]
+				\end{minipage}
+			}
+		\end{minipage}
+		\\
+		Since \(  1 + x(k+1) \leq kx^2+ x(k+1) + 1 \), it follows that:
+		\[
+			1 + x(k+1) \leq kx^2 + x(k+1) + 1 \leq (1+x)(1+x)^k = (1+x)^{k+1}
+		\]
+		Thus, we have shown that if \( P(k) \) is true, then \( P(k + 1) \) is also true.\\
+	\end{proof}
+\end{theo}
+
+\vspace{1cm}
+
+\begin{theo}[Recursively Defined Sequence]
+	A sequence \( c_0, c_1, c_2, \dots \) is defined recursively as follows:
+	\[
+		c_0 = 3, \quad c_k = (c_{k-1})^2 \text{ for all integers } k \geq 1.
+	\]
+	Prove by induction that:
+	\[
+		c_n = 3^{2^n} \quad \text{for all integers } n \geq 0.
+	\]
+\end{theo}
+\end{document}
