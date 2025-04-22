@@ -103,24 +103,6 @@
 \end{titlepage}
 
 \section*{Problems}
-
-\[
-	\begin{array}{c@{\quad\quad}c}
-		\textbf{LHS}        & \textbf{RHS}              \\
-
-		\sum_{i=0}^{0} r^i  & \frac{r^{0+1} - 1}{r - 1} \\
-		\rotatebox{90}{$=$} & \rotatebox{90}{$=$}       \\
-
-		r^0                 & \frac{r - 1}{r - 1}       \\
-		\rotatebox{90}{$=$} & \rotatebox{90}{$=$}       \\
-
-		1                   & 1                         \\
-		\rotatebox{90}{$=$} & \rotatebox{90}{$=$}       \\
-
-		1                   & 1                         \\
-		\multicolumn{2}{c}{\textbf{Therefore, LHS = RHS}}
-	\end{array}
-\]
 \begin{theo}[Induction Proof 1]
 	Prove the following statement using mathematical induction:
 	\[
@@ -128,9 +110,9 @@
 	\]
 	\begin{proof}[Proof by Mathematical Induction.]
 		\leavevmode\par
-		Let the property, \( P(n) \) be the equation:
+		\noindent Let the property, \( P(n) \) be the equation:\\
 		\[
-			\quad \frac{1}{1 \cdot 2} + \frac{1}{2 \cdot 3} + \cdots + \frac{1}{n(n+1)} = \frac{n}{n+1}
+			\frac{1}{1 \cdot 2} + \frac{1}{2 \cdot 3} + \cdots + \frac{1}{n(n+1)} = \frac{n}{n+1}
 		\]
 		\textbf{Base Case:} Show that \( P(1) \) is true.\\
 		\[
@@ -146,23 +128,50 @@
 		\[
 			\quad \frac{1}{1 \cdot 2} + \frac{1}{2 \cdot 3} + \cdots + \frac{1}{k(k+1)} = \frac{k}{k+1}
 		\]
-		We need to show that \( P(k + 1) \) is true.
-		\[
-			\begin{array}{c@{\quad\quad}c}
-				\textbf{LHS}                                                                  & \textbf{RHS}                                           \\
-				\frac{1}{1 \cdot 2} + \frac{1}{2 \cdot 3} + \cdots + \frac{1}{(k+1)((k+1)+1)} & \frac{k+1}{(k+1)+1}                                    \\
-				\rotatebox{90}{$=$}                                                           & \rotatebox{90}{$=$}                                    \\
-				\frac{k}{k+1} + \frac{1}{(k+1)((k+1)+1)}                                      & \frac{k+1}{k+2}                                        \\
-				\rotatebox{90}{$=$}                                                           & \Downarrow                                             \\
-				\frac{k(k+1) + 1}{(k+1)(k+2)}                                                 &                                                        \\
-				\rotatebox{90}{$=$}                                                           & \Downarrow                                             \\
-				\frac{k^2+2k+1}{(k+1)(k+2)}                                                   &                                                        \\
-				\rotatebox{90}{$=$}                                                           & \Downarrow                                             \\
-				\frac{(k+1)^2}{(k+1)(k+2)}                                                    &                                                        \\
-				\rotatebox{90}{$=$}                                                           & \Downarrow                                             \\
-				\frac{k+1}{k+2}                                                               & \kern-3em = \hphantom{\frac{k+1}{k+2}} \frac{k+1}{k+2}
-			\end{array}
-		\]
+		We need to show that \( P(k + 1) \) is true.\\
+		\noindent
+		\begin{minipage}[t]{0.48\textwidth}
+			\fbox{%
+				\begin{minipage}{\textwidth}
+					\centering
+					\footnotesize
+					\textbf{LHS}
+					\[
+						\begin{array}{c}
+							\frac{1}{1 \cdot 2} + \frac{1}{2 \cdot 3} + \cdots + \frac{1}{(k+1)((k+1)+1)} \\
+							\rotatebox{90}{$=$}                                                           \\
+							\frac{k}{k+1} + \frac{1}{(k+1)((k+1)+1)}                                      \\
+							\rotatebox{90}{$=$}                                                           \\
+							\frac{k(k+1) + 1}{(k+1)(k+2)}                                                 \\
+							\rotatebox{90}{$=$}                                                           \\
+							\frac{k^2 + 2k + 1}{(k+1)(k+2)}                                               \\
+							\rotatebox{90}{$=$}                                                           \\
+							\frac{(k+1)^2}{(k+1)(k+2)}                                                    \\
+							\rotatebox{90}{$=$}                                                           \\
+							\frac{k+1}{k+2}
+						\end{array}
+					\]
+				\end{minipage}
+			}
+		\end{minipage}
+		\hspace{0.7em}
+		\begin{minipage}[t]{0.45\textwidth}
+			\fbox{%
+				\begin{minipage}{\textwidth}
+					\centering
+					\footnotesize
+					\textbf{RHS}
+					\[
+						\begin{array}{c}
+							\frac{k+1}{(k+1)+1} \\
+							\rotatebox{90}{$=$} \\
+							\frac{k+1}{k+2}     \\
+						\end{array}
+					\]
+				\end{minipage}
+			}
+		\end{minipage}\\
+		The LHS is equal to the RHS.\\
 		Thus, we have shown that if \( P(k) \) is true, then \( P(k + 1) \) is also true.\\
 	\end{proof}
 \end{theo}
@@ -177,7 +186,7 @@
 
 	\begin{proof}[Proof by Mathematical Induction.]
 		\leavevmode\par
-		Let the property, \( P(n) \) be the equation:
+		\noindent Let the property, \( P(n) \) be the equation:
 		\[
 			\sum_{i=1}^{n+1} i \cdot 2^i = n \cdot 2^{n+2} + 2
 		\]
@@ -196,28 +205,56 @@
 		\[
 			\sum_{i=1}^{k+1} i \cdot 2^i = k \cdot 2^{k+2} + 2
 		\]
-		Then we need to show that \( P(k + 1) \) is true.
-		\[
-			\begin{array}{c@{\quad\quad}c}
-				\textbf{LHS}                                  & \textbf{RHS}                                             \\
-				\sum_{i=1}^{(k+1)+1} i \cdot 2^i              & (k+1) \cdot 2^{(k+1)+2} + 2                              \\
-				\rotatebox{90}{$=$}                           & \rotatebox{90}{$=$}                                      \\
-				\sum_{i=1}^{(k+2)} i \cdot 2^i                & (k+1) \cdot 2^{(k+3)} + 2                                \\
-				\rotatebox{90}{$=$}                           & \Downarrow                                               \\
-				\sum_{i=1}^{(k+1)} i \cdot 2^i + (k+2)2^{k+2} & (k+1) \cdot 2^{(k+3)} + 2                                \\
-				\rotatebox{90}{$=$}                           & \Downarrow                                               \\
-				k \cdot 2^{k+2} + 2 +(k+2)2^{k+2}             &                                                          \\
-				\rotatebox{90}{$=$}                           & \Downarrow                                               \\
-				2^{k+2}(k + (k+2)) + 2                        &                                                          \\
-				\rotatebox{90}{$=$}                           & \Downarrow                                               \\
-				2^{k+2}(2k+2) + 2                             &                                                          \\
-				\rotatebox{90}{$=$}                           & \Downarrow                                               \\
-				2^{k+3}(k+1) + 2                              &                                                          \\
-				\rotatebox{90}{$=$}                           & \Downarrow                                               \\
-				2^{k+3}(k+1) + 2                              & \kern-1.em =\hphantom{2^{k+3}(k+1) + 2} 2^{k+3}(k+1) + 2 \\
-			\end{array}
-		\]
-
+		Then we need to show that \( P(k + 1) \) is true.\\
+		\noindent
+		\begin{minipage}[t]{0.48\textwidth}
+			\fbox{%
+				\begin{minipage}{\textwidth}
+					\centering
+					\footnotesize
+					\textbf{LHS}
+					\[
+						\begin{array}{c}
+							\sum_{i=1}^{(k+1)+1} i \cdot 2^i                   \\
+							\rotatebox{90}{$=$}                                \\
+							\sum_{i=1}^{k+2} i \cdot 2^i                       \\
+							\rotatebox{90}{$=$}                                \\
+							\sum_{i=1}^{k+1} i \cdot 2^i + (k+2) \cdot 2^{k+2} \\
+							\rotatebox{90}{$=$}                                \\
+							k \cdot 2^{k+2} + 2 + (k+2) \cdot 2^{k+2}          \\
+							\rotatebox{90}{$=$}                                \\
+							2^{k+2}(k + (k+2)) + 2                             \\
+							\rotatebox{90}{$=$}                                \\
+							2^{k+2}(2k + 2) + 2                                \\
+							\rotatebox{90}{$=$}                                \\
+							2^{k+3}(k + 1) + 2                                 \\
+							\rotatebox{90}{$=$}                                \\
+							2^{k+3}(k + 1) + 2
+						\end{array}
+					\]
+				\end{minipage}
+			}
+		\end{minipage}
+		\hspace{0.7em}
+		\begin{minipage}[t]{0.48\textwidth}
+			\fbox{%
+				\begin{minipage}{\textwidth}
+					\centering
+					\footnotesize
+					\textbf{RHS}
+					\[
+						\begin{array}{c}
+							(k + 1) \cdot 2^{(k + 1) + 2} + 2 \\
+							\rotatebox{90}{$=$}               \\
+							(k + 1) \cdot 2^{k + 3} + 2       \\
+							\rotatebox{90}{$=$}               \\
+							2^{k + 3}(k + 1) + 2              \\
+						\end{array}
+					\]
+				\end{minipage}
+			}
+		\end{minipage}\\
+		The LHS is equal to the RHS.\\
 		Thus, we have shown that if \( P(k) \) is true, then \( P(k + 1) \) is also true.
 	\end{proof}
 \end{theo}
@@ -229,8 +266,9 @@
 	\[
 		\forall n \in \mathbb{Z}, n \geq 2, \forall x \in \mathbb{R}, x \geq -1, \quad 1 + nx \leq (1 + x)^n
 	\]
-	\begin{proof}
-		Let the property, \( P(n) \) be the inequality:
+	\begin{proof}[Proof by Mathematical Induction.]
+		\leavevmode\par
+		\noindent Let the property, \( P(n) \) be the inequality:
 		\[
 			1 + nx \leq (1 + x)^n
 		\]
@@ -260,13 +298,16 @@
 			\fbox{%
 				\begin{minipage}{\textwidth}
 					\centering
+					\footnotesize
 					\textbf{LHS}
 					\[
-						\begin{aligned}
-							 & 1 + (k + 1)x \\
-							 & 1 + kx + x   \\
-							 & 1 + x(k + 1)
-						\end{aligned}
+						\begin{array}{c}
+							1 + (k + 1)x        \\
+							\rotatebox{90}{$=$} \\
+							1 + kx + x          \\
+							\rotatebox{90}{$=$} \\
+							1 + x(k + 1)
+						\end{array}
 					\]
 				\end{minipage}
 			}
@@ -276,16 +317,20 @@
 			\fbox{%
 				\begin{minipage}{\textwidth}
 					\centering
+					\footnotesize
 					\textbf{RHS}
 					\[
-						\begin{aligned}
-							 & (1 + x)^{k + 1}                             \\
-							 & (1 + x)(1 + x)^k                            \\
-							 & \Downarrow \text{(by inductive hypothesis)} \\
-							 & (1+x)(1+kx) \leq (1+x)(1+x)^k               \\
-							 & (kx^2 + kx + x + 1)  \leq (1+x)(1+x)^k      \\
-							 & kx^2+ x(k+1) + 1 \leq (1+x)(1+x)^k          \\
-						\end{aligned}
+						\begin{array}{c}
+							(1 + x)^{k + 1}                             \\
+							\rotatebox{90}{$=$}                         \\
+							(1 + x)(1 + x)^k                            \\
+							\Downarrow \text{(by inductive hypothesis)} \\
+							(1+x)(1+kx) \leq (1+x)(1+x)^k               \\
+							\rotatebox{90}{$=$}                         \\
+							(kx^2 + kx + x + 1)  \leq (1+x)(1+x)^k      \\
+							\rotatebox{90}{$=$}                         \\
+							kx^2+ x(k+1) + 1 \leq (1+x)(1+x)^k          \\
+						\end{array}
 					\]
 				\end{minipage}
 			}
@@ -299,7 +344,7 @@
 	\end{proof}
 \end{theo}
 
-\vspace{1cm}
+\newpage
 
 \begin{theo}[Recursively Defined Sequence]
 	A sequence \( c_0, c_1, c_2, \dots \) is defined recursively as follows:
@@ -310,5 +355,58 @@
 	\[
 		c_n = 3^{2^n} \quad \text{for all integers } n \geq 0.
 	\]
+	\begin{proof}[Proof by Mathematical Induction.]
+		\leavevmode\par
+		\noindent	Let the property \( P(n) \) be the equation:
+		\[
+			c_n = 3^{2^n} \text{ for all integers } n \geq 0.
+		\]
+		\textbf{Base Case:} Show that \( P(0) \) is true.\\
+		\[
+			c_0 = 3 \quad \text{and} \quad 3^{2^0} = 3^1 = 3
+		\]
+		\textbf{Inductive Step:} Assume that \( P(k) \) is true for some integer \( k \geq 0 \). That is, assume:
+		\[
+			c_k = 3^{2^k}
+		\]
+		We must show that \( P(k + 1) \) is true.\\
+		By Substitution:\\
+		\noindent
+		\begin{minipage}[t]{0.45\textwidth}
+			\fbox{%
+				\begin{minipage}{\textwidth}
+					\centering
+					\textbf{LHS}
+					\[
+						\begin{array}{c}
+							c_{k+1}                                     \\
+							\rotatebox{90}{$=$}                         \\
+							(c_k)^2                                     \\
+							\Downarrow \text{(by inductive hypothesis)} \\
+							(3^{2^k})^2                                 \\
+							\rotatebox{90}{$=$}                         \\
+							3^{2^{k+1}}                                 \\
+						\end{array}
+					\]
+				\end{minipage}
+			}
+		\end{minipage}
+		\hspace{.7em}
+		\begin{minipage}[t]{0.5\textwidth}
+			\fbox{%
+				\begin{minipage}{\textwidth}
+					\centering
+					\textbf{RHS}
+					\[
+						\begin{aligned}
+							3^{2^{k+1}} \\
+						\end{aligned}
+					\]
+				\end{minipage}
+			}
+		\end{minipage}\\
+		The LHS is equal to the RHS.\\
+		Thus, we have shown that if \( P(k) \) is true, then \( P(k + 1) \) is also true.\\
+	\end{proof}
 \end{theo}
 \end{document}
