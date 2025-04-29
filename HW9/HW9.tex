@@ -1,0 +1,262 @@
+% copyright arturo salinas-aguayo 2025
+\documentclass[12pt]{article}
+
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{array}
+\usepackage{mdframed}
+\usepackage{amsfonts}
+\usepackage{fancyhdr}
+\usepackage{geometry}
+\usepackage{subfigure}
+\usepackage{caption}
+\usepackage{tikz}
+\usepackage{bm}
+\usepackage{float}
+
+\geometry{letterpaper, margin=1in}
+\graphicspath{ {../images/} }
+
+% Header and Footer
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{CSE 2500-01: Homework 9}
+\fancyhead[R]{Page \thepage}
+\setlength{\headheight}{15pt}
+
+\author{Arturo Salinas-Aguayo}
+\title{CSE 2500-01: Homework 9}
+
+\usepackage{etoolbox} % Required for \ifstrempty
+
+\newcounter{theo}[section]
+\newenvironment{theo}[1][]{%
+  \stepcounter{theo}%
+  \ifstrempty{#1}%
+    {\mdfsetup{%
+      frametitle={%
+        \tikz[baseline=(current bounding box.east), outer sep=0pt]
+          \node[anchor=east,rectangle,fill=blue!20]
+          {\strut Theorem~\thetheo};}}%
+    }%
+    {\mdfsetup{%
+      frametitle={%
+        \tikz[baseline=(current bounding box.east), outer sep=0pt]
+          \node[anchor=east,rectangle,fill=blue!20]
+          {\strut Theorem~\thetheo:~#1};}}%
+    }%
+  \mdfsetup{
+    innertopmargin=10pt,
+    linecolor=blue!20,
+    linewidth=2pt,
+    topline=true,
+    frametitleaboveskip=-\ht\strutbox,
+  }
+  \begin{mdframed}[]\relax%
+}{\end{mdframed}}
+
+\renewcommand\qedsymbol{\textbf{QED}}
+\newtheorem{example}{Example}
+% Example block environment
+\newenvironment{examp}
+{\vspace{0.5cm}
+ \hrule
+\vspace{0.5cm}
+\begin{example}}
+{\hrule
+\vspace{0.5cm}
+\end{example}}
+% Macro for centered equals in final row
+\newcommand{\centereq}[2]{#1 \kern-3em = \hphantom{#1} #2}
+
+% Macro for vertical LHS/RHS derivation layout
+\newenvironment{lhsrhsproof}[0]{
+  \[
+  \renewcommand{\arraystretch}{1.5}
+  \begin{array}{c@{\quad\quad}c}
+  \textbf{LHS} & \textbf{RHS} \\
+}{
+  \end{array}
+  \]
+}
+\begin{document}
+\newcommand{\closure}[2][3]{%
+	{}\mkern#1mu\overline{\mkern-#1mu#2}}
+\newcommand\ncoverline[1]{\mkern1mu\overline{\mkern-1mu#1\mkern-1mu}\mkern1mu}
+% Title Page
+\begin{titlepage}
+	\centering
+	\vspace*{3cm}
+	\huge\textbf{CSE 2500-01: Homework 9}\\
+	\vspace{5cm}
+	\Large\textbf{Arturo Salinas-Aguayo}\\
+	\normalsize
+	Spring 2025\\
+	Electrical and Computer Engineering Department\\
+	\vfill
+	\includegraphics[scale=0.1]{uconnlogo}\\
+	College of Engineering, University of Connecticut\\
+	\scriptsize{Coded in \LaTeX}
+	\vspace*{1cm}
+\end{titlepage}
+
+\section*{Problems}
+\begin{enumerate}
+	\item (10 points) Let \( A = \{n \in \mathbb{Z} \mid n = 5r, \exists r \in \mathbb{Z}\} \) and \( B = \{m \in \mathbb{Z} \mid m = 20s, \exists s \in \mathbb{Z}\} \).
+	      \begin{enumerate}
+
+		      \item \( A \subseteq B \) \\
+		            \(A \not \subseteq B\). For example $5 \in A$ because $5 = 5(1)$, but $5 \neq 20k$ for any integer $k$. Therefore, $5 \notin B$.
+		      \item \( B \subseteq A \) \\
+		            Yes, every element of $B$ is in $A$. Suppose $n$ is any element of $B$, then $n = 20k$ for some integer $k$, and $n = 5(4k)$. So, since $4k$ is an integer, $n \in A$.
+	      \end{enumerate}
+
+	\item (10 points) Let \( A = \{a, b, c\} \), \( B = \{b, c, d\} \), and \( C = \{b, c, e\} \)
+	      \begin{enumerate}
+		      \item Find \( A \cap (B \cup C) \), \( (A \cap B) \cup C \), and \( (A \cap B) \cup (A \cap C) \). Which of these sets are equal?
+		            \begin{enumerate}
+			            \item \( A \cap (B \cup C) = \{a,b,c\} \cap \{b,c,d,e\} = \{b,c\}\)
+			            \item \( (A \cap B) \cup C = \{b,c\} \cup \{b,c,e\} = \{b,c,e\} \)
+			            \item \( (A \cap B) \cup (A \cap C) = \{b,c\} \cup \{b, c\} = \{b,c\} \)
+			            \item Hence, \( A \cap (B \cup C) = (A \cap B) \cup(A\cap C)\)
+		            \end{enumerate}
+		      \item Find \( (A - B) - C \) and \( A - (B - C) \). Are these two sets equal?
+		            \begin{enumerate}
+			            \item \( (A - B) - C = \{a\} - \{b,c,e\} = \{a\} \)
+			            \item \( A - (B - C) = \{a,b,c\} - \{d\} = \{a,b,c\}\)
+			            \item No, these sets are not equal.
+		            \end{enumerate}
+	      \end{enumerate}
+
+	\item Let \( S_i = \{x \in \mathbb{R} \mid 1 < x < 1 + \frac{1}{i}\} = (1, 1+\frac{1}{i}) \) for all positive integers \( i \).
+	      \begin{enumerate}
+		      \item \( \bigcup\limits_{i=1}^{\infty} S_i = \bigcup\limits_{i=1}^{\infty} (1, 1 + \frac{1}{i}) = (1, 2) = S_1\)
+		      \item \( \bigcap\limits_{i=1}^{\infty} S_i = \bigcup\limits_{i=1}^{\infty} (1,1 + \frac{1}{i}) = \emptyset\)
+	      \end{enumerate}
+
+	\item
+	      \begin{enumerate}
+		      \item Is \(\{\{5,4\}, \{7,2\}, \{1,3,4\}, \{6,8\}\}\) a partition of \( A = \{1,2,3,4,5,6,7,8\} \)?\\
+		            No, because \(4\) is in two sets, \(\{5,4\}\) and \(\{1,3,4\}\).
+		      \item Is \(\{\{1,5\}, \{4,7\}, \{2,8,6,3\}\}\) a partition of \( A = \{1,2,3,4,5,6,7,8\} \)?\\
+		            Yes, every element in \{1,2,3,4,5,6,7,8\} is in exactly one set and no element is in more than one set of the partition.
+	      \end{enumerate}
+
+	\item Find \( \mathcal{P}(\mathcal{P}(\mathcal{P}(\emptyset))) \).\\
+	      \(\mathcal{P}(\mathcal{P}(\mathcal{P}(\emptyset))) = \{\emptyset, \{\emptyset\}, \{\{\emptyset\}\}, \{\emptyset, \{\emptyset\}\}\}\)
+
+	\item Let \( A_1 = \{1,2,3\} \), \( A_2 = \{u, v\} \), and \( A_3 = \{m, n\} \). Find the following sets:
+	      \begin{enumerate}
+		      \item
+		            \[
+			            \begin{aligned}
+				            (A_1 \times A_2) \times A_3 = \{ & ((1,u),m),\ ((1,u),n),\ ((1,v),m),\ ((1,v),n),   \\
+				                                             & ((2,u),m),\ ((2,u),n),\ ((2,v),m),\ ((2,v),n),   \\
+				                                             & ((3,u),m),\ ((3,u),n),\ ((3,v),m),\ ((3,v),n) \}
+			            \end{aligned}
+		            \]
+		      \item
+		            \[
+			            \begin{aligned}
+				            A_1 \times A_2 \times A_3 = \{ & (1,u,m),\ (1,u,n),\ (1,v,m),\ (1,v,n),   \\
+				                                           & (2,u,m),\ (2,u,n),\ (2,v,m),\ (2,v,n),   \\
+				                                           & (3,u,m),\ (3,u,n),\ (3,v,m),\ (3,v,n) \}
+			            \end{aligned}
+		            \]
+		      \item How are these sets different?
+		            \begin{itemize}
+			            \item In part (a), each element is a \textbf{pair}, where the first component is itself a \textbf{pair}. The structure is \(((x,y),z)\).
+			            \item In part (b), each element is a \textbf{triple} \((x,y,z)\).
+			            \item Although the same elements are used (from \( A_1 \), \( A_2 \), and \( A_3 \)), the organization and grouping differ.
+		            \end{itemize}
+	      \end{enumerate}
+	\item (10 points) Use an elementary argument to prove the following statement using contrapositive. You may assume that all subsets are sets of a universal set \( U \). It may be helpful to proceed by division into cases. For all sets \( A, B, C \), if \( A \subseteq C \) and \( B \subseteq C \), then \( (A \cup B) \subseteq C \).
+	      \begin{theo}[Contrapositive Proof]
+		      \begin{proof}[Proof by Contrapositive]
+			      By the contrapositive:
+
+			      Suppose \( (A \cup B) \nsubseteq C \).
+
+			      Then, there exists an element \( x \in A \cup B \) such that \( x \notin C \).
+
+			      By definition of union, \( x \in A \) or \( x \in B \).
+
+			      We proceed by cases:
+			      \begin{itemize}
+				      \item \textbf{Case 1:} \( x \in A \).
+				            Since \( x \notin C \), it follows that \( A \nsubseteq C \).
+				      \item \textbf{Case 2:} \( x \in B \).
+				            Since \( x \notin C \), it follows that \( B \nsubseteq C \).
+			      \end{itemize}
+
+			      Thus, if \( (A \cup B) \nsubseteq C \), then either \( A \nsubseteq C \) or \( B \nsubseteq C \).
+
+			      Therefore, by contrapositive, we conclude:
+			      If \( A \subseteq C \) and \( B \subseteq C \), then \( (A \cup B) \subseteq C \).
+		      \end{proof}
+	      \end{theo}
+
+	\item (10 points) Use the element method for proving a set equals the empty set to prove: For all sets \( A, B, C \), if \( A \subseteq B \) and \( B \cap C = \emptyset \), then \( A \cap C = \emptyset \).
+	      \begin{theo}[Proving a Set Equals $\emptyset$]
+		      \begin{proof}
+			      Let \( A, B, C \) be sets such that \( A \subseteq B \) and \( B \cap C = \emptyset \).
+			      Suppose \( A \cap C \neq \emptyset \). Then there is an element \( x \) such that \( x \in A \cap C \). \\
+			      By definition of intersection, this means \( x \in A \) and \( x \in C \).\\
+			      Since \( A \subseteq B \), it follows that \( x \in B \). However, since \( B \cap C = \emptyset \), we have \( x \notin C \). \\
+			      This is a contradiction.\\
+			      Therefore, our assumption that \( A \cap C \neq \emptyset \) must be false. Thus, we conclude that \( A \cap C = \emptyset \).
+		      \end{proof}
+	      \end{theo}
+
+	\item (10 points) Use the element method for proving a set equals the empty set to prove: For all sets \( A, B, C \), if \( B \cap C \subseteq A \), then \( (C - A) \cap (B - A) = \emptyset \).
+	      \begin{theo}[Proving a Set Equals $\emptyset$]
+		      Let $A, B,$ and $C$ be any sets such that \( B \cup C \subseteq A\).\\
+		      Suppose \((C - A) \cap (B - A) \neq \emptyset\).\\
+		      By definition of empty set, thgere is an element $x$ such that \( x \in (C - A) \cap (B - A_ = \emptyset\).\\
+		      By definition of intersection, \(x \in C - A\) and \(x \in B - A\). \\
+		      So, by definition of set difference, \(x \in C\) and \(x \not \in A\) and \(x \in B\) and \(x \not \in A\).\\
+		      Since \( x \in C\) and \(x \in B\), \(x \in B \cap C\) by the definition of intersection.\\
+		      But \(B \cap C \subseteq A\), so \(x \in A\).\\
+		      This is a contradiction, since we have shown that \(x \in A\) and \(x \not \in A\).\\
+		      Hence the supposition is false, and we conclude that \((C - A) \cap (B - A) = \emptyset\).
+	      \end{theo}
+
+	\item (10 points) Construct an algebraic proof for the following (cite a set identity to justify each step): For all sets \( A, B, C \),
+	      \[
+		      (A - B) - (B - C) = A - B
+	      \]
+	      \begin{enumerate}
+		      \item
+		            \begin{enumerate}
+			            \item (1) \((A - B) - (B - C)\)
+			                  (2) \(= (A \cap B^c) \cap (B \cap C^c)^c\) by definition of set difference
+			            \item (1) \(= (A \cap B^c) \cap (B^c \cup C)\) by De Morgan's Law
+			            \item (1) \(= (A \cap B^c \cap B^c) \cup (A \cap B^c \cap C)\) by Distributive Law
+			            \item (1) \(= (A \cap B^c) \cup (A \cap B^c \cap C)\) by Idempotent Law
+			            \item (1) \(= A \cap B^c\) by Absorption Law
+			            \item (1) \(= A - B\) by definition of set difference
+		            \end{enumerate}
+	      \end{enumerate}
+
+	      \vspace{0.5cm}
+
+	\item (10 points) Simplify the expression, citing a set identity in each step:
+	      \[
+		      ((A \cap (B \cap C)) \cap (A - B)) \cap (B \cup C^c)
+	      \]
+	      \begin{enumerate}
+		      \item
+		            \begin{enumerate}
+			            \item (1) \(((A \cap (B \cap C)) \cap (A - B)) \cap (B \cup C^c)\)
+			                  (2) \(= ((A \cap B \cap C) \cap (A \cap B^c)) \cap (B \cup C^c)\) by definition of set difference
+			            \item (1) \(= (A \cap (B \cap B^c) \cap C) \cap (B \cup C^c)\) by Associative and Commutative Laws
+			            \item (1) \(= (A \cap \emptyset \cap C) \cap (B \cup C^c)\) because \(B \cap B^c = \emptyset\)
+			            \item (1) \(= \emptyset \cap (B \cup C^c)\) because \(A \cap \emptyset = \emptyset\)
+			            \item (1) \(= \emptyset\) by Identity Law (\(\emptyset\) intersect anything is \(\emptyset\))
+		            \end{enumerate}
+	      \end{enumerate}
+\end{enumerate}
+\end{document}
+% vim: set ft=tex tw=80 ts=2 sts=2 sw=2 noet spell:
