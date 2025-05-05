@@ -1,0 +1,181 @@
+% copyright arturo salinas-aguayo 2025
+\documentclass[12pt]{article}
+
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{array}
+\usepackage{mdframed}
+\usepackage{amsfonts}
+\usepackage{fancyhdr}
+\usepackage{geometry}
+\usepackage{subfigure}
+\usepackage{caption}
+\usepackage{tikz}
+\usepackage{bm}
+\usepackage{float}
+
+\geometry{letterpaper, margin=1in}
+\graphicspath{ {../images/} }
+
+% Header and Footer
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{CSE 2500-01: Homework 9}
+\fancyhead[R]{Page \thepage}
+\setlength{\headheight}{15pt}
+
+\author{Arturo Salinas-Aguayo}
+\title{CSE 2500-01: Homework 9}
+
+\usepackage{etoolbox} % Required for \ifstrempty
+
+\newcounter{theo}[section]
+\newenvironment{theo}[1][]{%
+  \stepcounter{theo}%
+  \ifstrempty{#1}%
+    {\mdfsetup{%
+      frametitle={%
+        \tikz[baseline=(current bounding box.east), outer sep=0pt]
+          \node[anchor=east,rectangle,fill=blue!20]
+          {\strut Theorem~\thetheo};}}%
+    }%
+    {\mdfsetup{%
+      frametitle={%
+        \tikz[baseline=(current bounding box.east), outer sep=0pt]
+          \node[anchor=east,rectangle,fill=blue!20]
+          {\strut Theorem~\thetheo:~#1};}}%
+    }%
+  \mdfsetup{
+    innertopmargin=10pt,
+    linecolor=blue!20,
+    linewidth=2pt,
+    topline=true,
+    frametitleaboveskip=-\ht\strutbox,
+  }
+  \begin{mdframed}[]\relax%
+}{\end{mdframed}}
+
+\renewcommand\qedsymbol{\textbf{QED}}
+\newtheorem{example}{Example}
+% Example block environment
+\newenvironment{examp}
+{\vspace{0.5cm}
+ \hrule
+\vspace{0.5cm}
+\begin{example}}
+{\hrule
+\vspace{0.5cm}
+\end{example}}
+% Macro for centered equals in final row
+\newcommand{\centereq}[2]{#1 \kern-3em = \hphantom{#1} #2}
+
+% Macro for vertical LHS/RHS derivation layout
+\newenvironment{lhsrhsproof}[0]{
+  \[
+  \renewcommand{\arraystretch}{1.5}
+  \begin{array}{c@{\quad\quad}c}
+  \textbf{LHS} & \textbf{RHS} \\
+}{
+  \end{array}
+  \]
+}
+\begin{document}
+\newcommand{\closure}[2][3]{%
+	{}\mkern#1mu\overline{\mkern-#1mu#2}}
+\newcommand\ncoverline[1]{\mkern1mu\overline{\mkern-1mu#1\mkern-1mu}\mkern1mu}
+% Title Page
+\begin{titlepage}
+	\centering
+	\vspace*{3cm}
+	\huge\textbf{CSE 2500-01: Homework 9}\\
+	\vspace{5cm}
+	\Large\textbf{Arturo Salinas-Aguayo}\\
+	\normalsize
+	Spring 2025\\
+	Electrical and Computer Engineering Department\\
+	\vfill
+	\includegraphics[scale=0.1]{uconnlogo}\\
+	College of Engineering, University of Connecticut\\
+	\scriptsize{Coded in \LaTeX}
+	\vspace*{1cm}
+\end{titlepage}
+\section{Previous Test Questions}
+\begin{enumerate}
+	\item Assume $p \rightarrow q$ is False. Find truth value of:
+	      \[
+		      (\sim{}p \land q) \leftrightarrow (p \lor q)
+	      \]
+	      \begin{theo}
+		      If $p\leftarrow q$ is false, then this means that $(\sim p \lor q)$ is false.\\
+		      The negation of $(\sim p \lor q)$ is $(p \land \sim q)$. which is true with the supposition.\\
+		      Therefore, since $p$ is true, $q$ must be false.\\
+		      The biconditional states that both sides must be true or both sides must be false.\\
+		      The left side is true, and the right side is false.\\
+		      Therefore, the biconditional is false.
+	      \end{theo}
+	\item $\forall n \in \mathbb{Z}, n \geq 1, a^n - b^n$ is a multiple of $a - b$
+	      \begin{theo}
+		      \begin{proof}[Proof by Mathematical Induction]
+			      Let $P(n)$ be the property:
+			      \[
+				      a - b \mid a^n - b^n
+			      \]
+			      \textbf{Basis Step}: Check if $P(1)$ is true:\\
+			      \[a^0 - b^0 = a - b\]
+			      This is true.\\
+			      \textbf{Inductive Step}: Assume $P(k)$ is true for some $k$ with $k \geq 1$.
+			      That is,
+			      \[
+				      a^k - b^k = (a - b) \cdot m \text{ for some } m \in \mathbb{Z}
+			      \]
+			      It must be shown that $P(k + 1)$ is also true.
+			      \begin{align*}
+				      a^{k+1} - b^{k+1} & = a^{k+1} - ab^{k} + ab^{k} - b^{k+1} & \text{by adding and subtracting $ab^k$} \\
+				                        & = a(a^k - b^k) + b^k(a - b)           & \text{by factoring}                     \\
+				                        & = a(a-b)m + b^k(a-b)                  & \text{by inductive hypothesis}          \\
+				                        & = (a-b)[a(m+b^k)]
+			      \end{align*}
+			      Now let $t = a(m + b^k)$, which is an integer due to subtraction of integers.\\
+			      Therefore, $a^{k+1} - b^{k+1} = (a - b) \cdot t$\\
+		      \end{proof}
+	      \end{theo}
+	\item $n^3 - n$ is divisible by 6, for each integer $n \geq 0$
+	      \begin{theo}
+		      \begin{proof}[Proof by Mathematical Induction]
+			      Let $P(n)$ by the expression:
+			      \[
+				      6 \mid n^3 - n
+			      \]
+			      \textbf{Basis Step}: $P(0)$ is:
+			      \[
+				      0^3 - 0 = 0
+			      \]
+			      $0$ is divisible by $6$.\\
+			      \textbf{Inductive Step}: Assume $P(k)$ is true, that is:
+			      \[
+				      k^3 - k = 6\cdot m \quad\text{for some integer $m$}
+			      \]
+			      We must show $P(k+1)$ is true, that is,
+			      \[
+				      (k+1)^3 - (k+1) = 6 \cdot m
+			      \]
+			      \begin{align*}
+				      (k+1)^3 - (k+1) & = k^3 + 3k^2 + 3k + 1 - k - 1 \\
+				                      & = (k^3-k) + 3(k^2 + k)        \\
+				                      & = 6 \cdot (m) + 3(k(k+1))     \\
+			      \end{align*}
+			      Since $k(k+1)$ is even then let it equal $2s$ for some integer $s$.
+			      Then:
+			      \begin{align*}
+				      (k+1)^3 - (k+1) & = 6m + 3 \cdot 2s \\
+				                      & = 6(m + s)        \\
+			      \end{align*}
+			      Thus $(k+1)^3 - (k+1)$ is divisible by 6.
+		      \end{proof}
+	      \end{theo}
+\end{enumerate}
+
+\end{document}
+% vim: set ft=tex tw=80 ts=2 sts=2 sw=2 noet spell:
